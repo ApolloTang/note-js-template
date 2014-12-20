@@ -1,0 +1,185 @@
+HTML and Jade Comparison
+
+    <div class="wrapper">
+      <h1>My holiday in Prague</h1>
+      <p>I had a great holiday in Prague where I met some great people.</p>
+      <img src="images/photo.jpg" alt="Me on holiday!" />
+    </div>
+
+    .wrapper
+      h1 My holiday in Prague
+      p I had a great holiday in Prague where I met some great people
+      img(src='images/photo.jpg', alt='Me on holiday')
+
+
+    Note:
+
+        • Jade is much more terse than HTML.
+        • Jade uses indentation to declare the hierarchy of an HTML document
+        • You do not have to use tags in Jade. The <> characters are
+          automatically added when the template is compiled.
+        • You do not have to close HTML tags in Jade. When Jade generates
+          the HTML, it will close the tags for you.
+
+
+    html
+    compiles to
+    <html></html>
+
+    section#wrapper
+    compiles to
+    <section id="wrapper"></section>
+
+    p.highlight
+    compiles to
+    <p class="highlight"></p>
+
+    section#wrapper.class-name
+    compiles to
+    <section id="wrapper" class="class-name"></section>
+
+    p.first.section.third.fourth
+    compiles to
+    <p class="first second third fourth">
+
+
+
+    To create HTML structure, indentation is used:
+
+        p
+          span
+
+        compiles to
+
+        <p><span></span></p>
+
+    To add text within a tag, simply add it after the tag declaration.
+
+        h1 Very important heading
+        compiles to
+        <h1>Very important heading<h1>
+
+    Jade also supports large bodies of text by using the pipe delineator:
+
+    p
+      | Text can be over
+      | many lines
+      | after a pipe symbol
+
+    compiles to
+
+    <p>Text can be over many lines after a pipe symbol<p>
+
+    ::: Solution for excercise:
+
+            extends layout
+
+            block content
+              h1= title
+              p Welcome to #{title}
+              section#wrapper
+                h2 Basic Structure
+                section
+                  p
+                    span This is the content of span 
+                    span ljdfks
+
+
+
+::: Outputting Data with Jade --------------------------------------------
+
+    The minus sign (-):
+
+        Codes that follows should be executed
+
+    The equals sign (=):
+
+        Codes that follows should be evaluated, escaped, and then outputted.
+
+    #{<variable>} 
+
+        Replace the <variable> with the string value.
+
+    for example:
+
+        - var foo = "bar";
+        p Foo is #{foo}!
+
+    produce:
+
+        <p>Foo is bar!<p>
+
+
+::: Loops through array --------------------------------------------------
+
+    ul#wrapper-4
+        - items = ['a', 'b', 'c']
+        - each item in items
+          li= item 
+
+    Note that "-" is optional in loops:
+
+        ul#wrapper-5
+            - items = ['i', 'j', 'k']
+            each item in items
+              li= item 
+
+    [!] can not have space between 'li' and '='
+
+        ul#wrapper-6
+            - items = ['x', 'y', 'z']
+            each item in items
+              li = item 
+
+
+            above will produce:
+
+                • = item
+                • = item
+                • = item
+
+            instead of :
+
+                • = x
+                • = y
+                • = z
+
+
+    ::: for item in items syntax
+
+        ul#wrapper-7
+            - items = ['x', 'y', 'z']
+            for item in items
+              li= item 
+
+
+    ::: Loops through object 
+
+            - obj = { "l":'l', "m":'m', "n":'n'}
+            each val, key in obj
+                li #{val} : #{key}
+
+::: Condition ------------------------------------------------------------
+
+        - trueOrFalse = false
+        - if (trueOfFalse)
+         p it is true!
+        - else
+         p it is false! 
+
+
+        p (-) in front of the if and else keywords is optional.
+
+            - trueOrFalse = false
+            if (trueOrFalse)
+             p it is true!
+            else
+             p it is false!
+
+::: inline javaScript ----------------------------------------------------
+
+    script 
+        | alert('from jade template')
+        | console.log('from jade template')
+
+
