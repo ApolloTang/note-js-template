@@ -70,6 +70,21 @@ HTML and Jade Comparison
 
     <p>Text can be over many lines after a pipe symbol<p>
 
+
+    Another way to deal with large body of text is use period after
+
+    p.
+      Nunc cras! Nunc vel odio. Penatibus tincidunt porttitor, turpis
+      nec tincidunt et mus augue nec scelerisque nec nec, pid sit. Urna
+      nunc, porta cum, porta est natoque vel, sed parturient, sed lacus
+
+    compiles to
+
+
+        <p>Nunc cras! Nunc vel odio. Penatibus tincidunt porttitor, turpis
+        nec tincidunt et mus augue nec scelerisque nec nec, pid sit. Urna
+        nunc, porta cum, porta est natoque vel, sed parturient, sed lacus</p>
+
     ::: Solution for excercise:
 
             extends layout
@@ -81,7 +96,7 @@ HTML and Jade Comparison
                 h2 Basic Structure
                 section
                   p
-                    span This is the content of span 
+                    span This is the content of span
                     span ljdfks
 
 
@@ -96,7 +111,7 @@ HTML and Jade Comparison
 
         Codes that follows should be evaluated, escaped, and then outputted.
 
-    #{<variable>} 
+    #{<variable>}
 
         Replace the <variable> with the string value.
 
@@ -115,21 +130,21 @@ HTML and Jade Comparison
     ul#wrapper-4
         - items = ['a', 'b', 'c']
         - each item in items
-          li= item 
+          li= item
 
     Note that "-" is optional in loops:
 
         ul#wrapper-5
             - items = ['i', 'j', 'k']
             each item in items
-              li= item 
+              li= item
 
     [!] can not have space between 'li' and '='
 
         ul#wrapper-6
             - items = ['x', 'y', 'z']
             each item in items
-              li = item 
+              li = item
 
 
             above will produce:
@@ -150,10 +165,10 @@ HTML and Jade Comparison
         ul#wrapper-7
             - items = ['x', 'y', 'z']
             for item in items
-              li= item 
+              li= item
 
 
-    ::: Loops through object 
+    ::: Loops through object
 
             - obj = { "l":'l', "m":'m', "n":'n'}
             each val, key in obj
@@ -165,7 +180,7 @@ HTML and Jade Comparison
         - if (trueOfFalse)
          p it is true!
         - else
-         p it is false! 
+         p it is false!
 
 
         p (-) in front of the if and else keywords is optional.
@@ -178,7 +193,7 @@ HTML and Jade Comparison
 
 ::: inline javaScript ----------------------------------------------------
 
-    script 
+    script
         | alert('from jade template')
         | console.log('from jade template')
 
