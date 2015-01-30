@@ -1,0 +1,17 @@
+extends ./base.jade
+
+block body_content
+  p some paragraph
+
+// NOTE:
+// append and prepend will only show if
+// block body_content is absence,
+// so, if you comment out the above
+// the content in code below will be injected into
+// base.jade
+
+block append body_content
+  p ... appdended text
+
+block prepend body_content
+  p ... prepended text
