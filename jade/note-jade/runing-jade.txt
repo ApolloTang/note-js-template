@@ -1,0 +1,5 @@
+$ ls -F
+base.jade   child.jade
+
+$ jade -wP child.jade
+
